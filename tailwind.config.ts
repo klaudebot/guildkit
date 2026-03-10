@@ -43,8 +43,10 @@ const config: Config = {
       },
       animation: {
         "pulse-glow": "pulseGlow 4s ease-in-out infinite",
-        "float": "float 6s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
         "slide-up": "slideUp 0.5s ease-out",
+        "spin-slow": "spin 12s linear infinite",
+        "counter-tick": "counterTick 0.3s ease-out",
       },
       keyframes: {
         pulseGlow: {
@@ -58,6 +60,10 @@ const config: Config = {
         slideUp: {
           "0%": { transform: "translateY(20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        counterTick: {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
