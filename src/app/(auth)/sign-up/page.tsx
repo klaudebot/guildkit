@@ -20,12 +20,11 @@ export default function SignUp() {
     setError("");
     setLoading(true);
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: { guild_name: guildName },
-        emailRedirectTo: `${window.location.origin}/api/auth/callback`,
       },
     });
 
@@ -35,7 +34,15 @@ export default function SignUp() {
       return;
     }
 
-    router.push("/dashboard");
+    // If autoconfirm is off and email confirmation is needed
+    if (data.user && !data.session) {
+      setError("Please check your email to confirm your account.");
+      setLoading(false);
+      return;
+    }
+
+    // Session is active — use window.location so cookies are set before navigation
+    window.location.href = "/dashboard";
   }
 
   async function handleGoogleSignUp() {

@@ -30,7 +30,7 @@ export default function SignIn() {
       return;
     }
 
-    router.push("/dashboard");
+    window.location.href = "/dashboard";
   }
 
   async function handleGoogleSignIn() {
